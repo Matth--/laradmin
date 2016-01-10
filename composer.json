@@ -2,7 +2,7 @@
     "name": "matthc/laradmin",
     "description": "Admin package for laravel",
     "require": {
-        "matthc/privileges": "dev-master"
+        "matthc/privileges": "0.1.*"
     },
     "license": "MIT",
     "authors": [
