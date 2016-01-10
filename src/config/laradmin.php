@@ -1,16 +1,30 @@
 <?php
 
 return [
-    'projectname' => 'Cinema K-Fé',
+    /*
+     * The projectname
+     * Change this if you want it to change in your titles and in the
+     * top left corner
+     */
+    'projectname' => 'Laradmin',
 
-    'prefix' => 'beheer',
+    /**
+     * The prefix to all routes
+     */
+    'prefix' => 'admin',
 
+    /**
+     * Allow registration
+     */
     'can_register' => false,
 
+    /*
+     * The menu items
+     */
     'menu' => [
-        'Gins' => [
-            'route' =>  'admin.gins',
-            'icon' => 'glass'
+        'Welcome' => [
+            'route' =>  'laradmin.welcome',
+            'icon' => 'check'
         ]
     ],
 ];
