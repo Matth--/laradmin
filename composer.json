@@ -1,0 +1,19 @@
+{
+    "name": "matthc/laradmin",
+    "description": "Admin package for laravel",
+    "require": {
+        "matthc/privileges": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthieu",
+            "email": "matthieu@dx-solutions.be"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MatthC\\Laradmin\\": "src/Laradmin/"
+        }
+    }
+}

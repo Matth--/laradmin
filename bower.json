@@ -1,0 +1,26 @@
+{
+  "name": "laradmin",
+  "authors": [
+    "Matthieu <matthieu@dx-solutions.be>"
+  ],
+  "description": "admin package for laravel",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "resources/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "startbootstrap-sb-admin-2": "~1.0.8"
+  },
+  "devDependencies": {
+    "sweetalert": "~1.1.3"
+  }
+}
