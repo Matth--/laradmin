@@ -3,6 +3,10 @@
 build/
 cache/
 
+### Folders ###
+resources/assets/vendor
+
+
 ### PHP ###
 
 /bootstrap/compiled.php
