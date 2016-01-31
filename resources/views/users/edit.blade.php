@@ -1,14 +1,16 @@
-@extends('laradmin::layouts.admin')
+@extends('laradmin::layout')
 @section('title', 'Update User')
 
 @section('content')
     <div class="row">
         <div class="col-sm-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Basic Information
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        Basic Information
+                    </h3>
                 </div>
-                <div class="panel-body">
+                <div class="box-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('laradmin.users.edit', $user->id) }}">
                         {!! csrf_field() !!}
 
@@ -54,11 +56,13 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Roles
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        Roles
+                    </h3>
                 </div>
-                <div class="panel-body">
+                <div class="box-body">
                     <form action="{{ route('laradmin.users.updateroles', $user->id) }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                         {!! csrf_field() !!}
                         @foreach($roles as $role)

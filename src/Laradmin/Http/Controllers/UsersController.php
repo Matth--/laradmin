@@ -2,25 +2,58 @@
 
 namespace MatthC\Laradmin\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
 use Validator;
+use App\Models\User;
 use MatthC\Privileges\Models\Role;
+use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use MatthC\Laradmin\Repositories\UserRepository;
 
 class UsersController extends Controller
 {
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+    /**
+     * UsersController constructor.
+     *
+     * @param UserRepository $userRepository
+     */
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+    /**
+     * Return a list of users
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-        $users =  User::paginate(20);
+        $users =  $this->userRepository->getPaginated(20);
         return view('laradmin::users.index', compact('users'));
     }
 
+    /**
+     * Get the create user page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getCreate()
     {
         return view('laradmin::users.create');
     }
 
+    /**
+     * Create a user
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Foundation\Validation\ValidationException
+     */
     public function postCreate(Request $request)
     {
         $data = $request->all();
@@ -43,9 +76,17 @@ class UsersController extends Controller
             $user->roles()->attach($role->id);
         }
 
-        return redirect()->route('laradmin.users.index');
+
+        $this->userRepository->clearCache();
+        return redirect()->route('laradmin.users.index')->with('success', 'User was created!');
     }
 
+    /**
+     * Show the edit page
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getEdit($id)
     {
         $user = User::find($id);
@@ -53,6 +94,13 @@ class UsersController extends Controller
         return view('laradmin::users.edit', compact('user', 'roles'));
     }
 
+    /**
+     * Change the user
+     *
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postEdit($id, Request $request)
     {
         $user = User::find($id);
@@ -72,17 +120,31 @@ class UsersController extends Controller
 
         $user->save();
 
-        return redirect()->route('laradmin.users.edit', $user->id)->with('message', 'User was updated');
+        return redirect()->route('laradmin.users.edit', $user->id)->with('success', 'User was updated');
     }
 
+    /**
+     * Update the user Roles
+     *
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateRoles($id, Request $request)
     {
         $user = User::find($id);
+        $roles = $request->get('roles');
         $user->roles()->sync($request->get('roles'));
 
-        return redirect()->route('laradmin.users.edit', $user->id)->with('message', 'Roles were updated!');
+        return redirect()->route('laradmin.users.edit', $user->id)->with('success', 'Roles were updated!');
     }
 
+    /**
+     * Delete a user
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function delete($id)
     {
         $user = User::find($id);
@@ -90,7 +152,7 @@ class UsersController extends Controller
             $user->delete();
         }
 
-        return redirect()->route('laradmin.users.index')->with('message', 'User Was deleted!');
+        return redirect()->route('laradmin.users.index')->with('success', 'User Was deleted!');
     }
 
 

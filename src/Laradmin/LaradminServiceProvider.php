@@ -2,6 +2,7 @@
 
 namespace MatthC\Laradmin;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 class LaradminServiceProvider extends ServiceProvider
@@ -9,6 +10,12 @@ class LaradminServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        App::register(\MatthC\Privileges\PrivilegesServiceProvider::class);
+        App::register(\HieuLe\Active\ActiveServiceProvider::class);
+        App::bind('Active', function()
+        {
+            return new \HieuLe\Active\Facades\Active;
+        });
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'laradmin');
 
         $this->publishes([
@@ -22,9 +29,6 @@ class LaradminServiceProvider extends ServiceProvider
         if (! $this->app->routesAreCached()) {
             require __DIR__.'/../routes.php';
         }
-        view()->composer(
-            'partials.menu', 'App\Http\ViewComposers\MenuComposer'
-        );
     }
 
     /**

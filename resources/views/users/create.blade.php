@@ -1,11 +1,11 @@
-@extends('laradmin::layouts.admin')
+@extends('laradmin::layout')
 @section('title', 'Create new User')
 
 @section('content')
 <div class="row">
     <div class="col-sm-12">
-        <div class="panel panel-default">
-            <div class="panel-body">
+        <div class="box">
+            <div class="box-body">
                 <form class="form-horizontal" role="form" method="POST" action="{{ route('laradmin.users.create') }}">
                     {!! csrf_field() !!}
 
