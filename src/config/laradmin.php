@@ -1,30 +1,31 @@
 <?php
 
 return [
-    /*
-     * The projectname
-     * Change this if you want it to change in your titles and in the
-     * top left corner
-     */
-    'projectname' => 'Laradmin',
+    'projectname' => 'Cinema K-Fé',
 
-    /**
-     * The prefix to all routes
-     */
-    'prefix' => 'admin',
+    'prefix' => 'beheer',
 
-    /**
-     * Allow registration
-     */
-    'can_register' => false,
-
-    /*
-     * The menu items
-     */
-    'menu' => [
-        'Welcome' => [
-            'route' =>  'laradmin.welcome',
-            'icon' => 'check'
+    'side_menu' => [
+        'Test' => [
+            'type' => 'submenu',
+            'icon' => 'users',
+            'roles' => ['admin', 'author'],
+            'submenu' => [
+                'subtest' => [
+                    'url' => 'test',
+                    'icon' => 'circle-o'
+                ]
+            ]
         ]
     ],
+
+    'color' => 'blue',
+
+    'can_register' => true,
+
+    'register_user_role' => 'user',
+
+    'company_name' => 'Matthieu Calie',
+
+    'company_url'  => 'http://calie.be'
 ];
