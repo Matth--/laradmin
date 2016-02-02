@@ -5,7 +5,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ "http://www.gravatar.com/avatar/" . md5( strtolower( trim( Auth::user()->email ) ) ) . "?d=mm" . "&s=45" }}" class="img-circle" alt="User Image">
+                <img src="{{ "https://secure.gravatar.com/avatar/" . md5( strtolower( trim( Auth::user()->email ) ) ) . "?d=mm" . "&s=45" }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>{{ Auth::user()->name }}</p>
