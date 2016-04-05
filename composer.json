@@ -2,7 +2,6 @@
     "name": "matthc/laradmin",
     "description": "Admin package for laravel",
     "require": {
-        "matthc/privileges": "0.1.*",
         "hieu-le/active": "^3.0"
     },
     "license": "MIT",
