@@ -10,4 +10,9 @@ class WelcomeController extends Controller
     {
         return view('laradmin::welcome');
     }
+
+    public function root()
+    {
+        return redirect()->route('laradmin.welcome');
+    }
 }

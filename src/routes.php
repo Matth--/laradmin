@@ -4,9 +4,10 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['prefix' => config('laradmin.prefix'), 'as' => 'laradmin.'], function () {
         Route::group(['middleware' => ['auth']], function() {
-            Route::get('/', function() {
-                return redirect()->route('laradmin.welcome');
-            });
+            Route::get('/', [
+                'as' => 'redirect',
+                'uses' => '\MatthC\Laradmin\Http\Controllers\WelcomeController@root'
+            ]);
             Route::get('index', [
                 'as' => 'welcome',
                 'uses' => '\MatthC\Laradmin\Http\Controllers\WelcomeController@index'
